@@ -9,3 +9,6 @@ There are five functions:
 - get_coords() to get user's locations' coordinates
 - create_map() to create a map
 - index() and twitter_map() works with Flask
+
+The example of a generated map:
+![Map](map.png?raw=true "output_map")
