@@ -76,7 +76,7 @@ def create_map(users_coords):
                             icon=folium.Icon()))
         map.add_child(fg)
 
-    map.save('map.html')
+    return map._repr_html_()
 
 
 app = Flask(__name__)
@@ -88,12 +88,11 @@ def index():
 
 @app.route("/create_map", methods=["POST"])
 def twitter_map():
-    name = request.form.get("name")
+    name = request.form.get("username")
     token = request.form.get("bearer_token")
     if not name or not token:
         return render_template("failure.html")
-    create_map(get_coords(users_info(name, token)))
-    return render_template("twitter_map.html")
+    return create_map(get_coords(users_info(name, token)))
 
 if __name__ == "__main__":
     app.run(debug=False)
